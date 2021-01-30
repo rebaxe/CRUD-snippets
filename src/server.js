@@ -7,7 +7,7 @@
 
 import express from 'express'
 import hbs from 'express-hbs'
-import session from 'express-session'
+// import session from 'express-session'
 import logger from 'morgan'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
@@ -29,7 +29,7 @@ const main = async () => {
 
   // View engine setup.
   app.engine('hbs', hbs.express4({
-    // defaultLayout: join(directoryFullName, 'views', 'layouts', 'default'),
+    defaultLayout: join(directoryFullName, 'views', 'layouts', 'default'),
     partialsDir: join(directoryFullName, 'views', 'partials')
   }))
   app.set('view engine', 'hbs')
@@ -43,6 +43,15 @@ const main = async () => {
   app.use(express.static(join(directoryFullName, '..', 'public')))
 
   app.use('/', router)
+
+  app.use(function (err, req, res, next) {
+    // 404 Not Found.
+    if (err.status === 404) {
+      return res
+        .status(404)
+        .sendFile(join(directoryFullName, 'views', 'errors', '404.html'))
+    }
+  })
 
   app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
