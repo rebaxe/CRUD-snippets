@@ -28,7 +28,7 @@ export class SnippetsController {
             code: snippet.code
           }))
       }
-      res.render('snippets/index')
+      res.render('snippets/index', { viewData })
       console.log(viewData)
     } catch (error) {
       next(error)

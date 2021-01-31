@@ -4,8 +4,15 @@
         <a class="add-snippet" href="/snippets/new">New snippet</a>
     </div>
     <ul>
+        {{#if viewData.snippets.length }}
+        {{#each viewData.snippets}}
         <li>
-            <pre><code>&lt;p&gt;Hello, World!&lt;/p&gt;</code></pre>
-            <span class="edit-delete-icons"><a href="#"><i class="fas fa-edit"></i></a><a href="#"><i class="fas fa-trash-alt"></i></a></span></li>
+            <pre><code>{{this.code}}</code></pre>
+            <span class="edit-delete-icons"><a href="#"><i class="fas fa-edit"></i></a><a href="#"><i class="fas fa-trash-alt"></i></a></span>
+        </li>
+        {{/each}}
+        {{else}}
+        <span>There are no snippets to show here.</span>
+        {{/if}}
     </ul>
 </div>
