@@ -8,18 +8,34 @@
 import express from 'express'
 import hbs from 'express-hbs'
 // import session from 'express-session'
+import helmet from 'helmet'
 import logger from 'morgan'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { router } from './routes/router.js'
+import { connectDB } from './config/mongoose.js'
 
 /**
  * The main function of the application.
  */
 const main = async () => {
-  // await connectDB()
+  await connectDB()
 
   const app = express()
+
+  app.use(helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'script-src': [
+        "'self'",
+        'https://ka-f.fontawesome.com',
+        'https://kit.fontawesome.com'
+      ],
+      'connect-src': ["'self'", 'https://ka-f.fontawesome.com']
+    }
+  })
+  )
+
   const directoryFullName = dirname(fileURLToPath(import.meta.url))
 
   // const baseURL = process.env.BASE_URL || '/'
