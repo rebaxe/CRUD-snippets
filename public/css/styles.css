@@ -43,6 +43,7 @@ li {
 .nav-bar > li {
     list-style: none;
     margin: 5px;
+    padding: 5px;
     font-family: 'Open Sans', sans-serif;
     color: white;
 }
@@ -84,26 +85,82 @@ li {
     margin: 10px 0;
 }
 
+.snippets-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-snippet {
+    background-color: rgb(178, 207, 183);
+    border: 1px solid rgb(178, 207, 183);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: ease-in-out 0.3s;
+}
+
+a.add-snippet {
+    text-decoration: none;
+    color: black;
+    font-size: 0.9rem;
+}
+
+.add-snippet:hover {
+    border: 1px solid rgba(45, 78, 61, 0.575);
+}
+
 .snippets-container > ul > li {
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: rgba(151, 180, 209, 0.308);
-    padding: 5px 10px;
+    padding: 10px 15px;
     position: relative;
 }
 
 .edit-delete-icons > a {
     text-decoration: none;
     color: black;
-    padding: 3px;
+    padding: 5px;
     transition: ease-in-out 0.3s;
 }
 .edit-delete-icons {
     position: absolute;
-    right: 0px;
+    right: 15px;
 }
 
 .edit-delete-icons > a:hover {
     color: rgb(84, 104, 126);
+}
+
+/* New snippet */
+form.new-snippet-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    margin: 5px 0;
+}
+
+textarea:focus {
+    outline: 1px solid rgb(84, 104, 126);
+}
+
+.submit-btn {
+    background-color: rgb(178, 207, 183);
+    border: 1px solid rgb(178, 207, 183);
+    margin: 8px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: ease-in-out 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: aliceblue;
 }

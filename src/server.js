@@ -22,6 +22,7 @@ const main = async () => {
   await connectDB()
 
   const app = express()
+  const directoryFullName = dirname(fileURLToPath(import.meta.url))
 
   app.use(helmet.contentSecurityPolicy({
     directives: {
@@ -35,8 +36,6 @@ const main = async () => {
     }
   })
   )
-
-  const directoryFullName = dirname(fileURLToPath(import.meta.url))
 
   // const baseURL = process.env.BASE_URL || '/'
 
@@ -71,7 +70,7 @@ const main = async () => {
 
   app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
-    console.log('Press Ctrl-C to terminate...')
+    console.log('Press Ctrl+C to terminate.')
   })
 }
 
