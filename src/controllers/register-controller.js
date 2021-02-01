@@ -35,10 +35,15 @@ export class RegisterController {
         username: req.body.username,
         password: req.body.password
       })
-      await user.save()
-      res.redirect('/login')
+      if (await User.findOne({ username: req.body.username })) {
+        throw new Error('Username already exists.')
+      } else {
+        await user.save()
+        res.redirect('/login')
+      }
     } catch (error) {
-      res.redirect('.')
+      console.log(error)
+      res.redirect('/register')
     }
   }
 }
