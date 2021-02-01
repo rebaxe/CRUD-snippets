@@ -21,5 +21,5 @@ router.post('/create', controller.create)
 router.get('/:id/edit', controller.edit)
 router.post('/:id/update', controller.update)
 
-router.get('/:id/remove')
-router.post('/:id/delete')
+router.get('/:id/remove', controller.remove)
+router.post('/:id/delete', controller.delete)

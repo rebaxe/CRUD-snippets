@@ -5,7 +5,7 @@
             <input type="hidden" name="id" value="{{viewData.id}}">
             <textarea name="code" cols="30" rows="10" readonly="readonly">{{viewData.code}}</textarea>
             <input type="submit" class="submit-btn" value="Edit">
-            <input type="submit" class="delete-btn" formaction="./remove" value="Delete">
+            <input type="submit" class="delete-btn" formaction="/snippets/{{viewData.id}}/remove" value="Delete">
         </form>
     </div>
 </div>

@@ -98,4 +98,30 @@ export class SnippetsController {
       res.redirect('./edit')
     }
   }
+
+  async remove (req, res) {
+    try {
+      const snippet = await Snippet.findOne({
+        _id: req.params.id
+      })
+      const viewData = {
+        id: snippet._id,
+        code: snippet.code
+      }
+      res.render('snippets/delete', { viewData })
+    } catch (error) {
+      res.redirect('.')
+    }
+  }
+
+  async delete (req, res) {
+    try {
+      await Snippet.deleteOne({
+        _id: req.body.id
+      })
+      res.redirect('..')
+    } catch (error) {
+      res.redirect('./remove')
+    }
+  }
 }
