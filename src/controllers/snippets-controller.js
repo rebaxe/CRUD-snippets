@@ -29,9 +29,25 @@ export class SnippetsController {
           }))
       }
       res.render('snippets/index', { viewData })
-      console.log(viewData)
     } catch (error) {
       next(error)
+    }
+  }
+
+  async view (req, res) {
+    try {
+      const snippet = await Snippet.findOne({
+        _id: req.params.id
+      })
+      console.log(snippet)
+      const viewData = {
+        id: snippet._id,
+        code: snippet.code
+      }
+      res.render('snippets/view', { viewData })
+    } catch (error) {
+      console.log(error)
+      res.redirect('.')
     }
   }
 
@@ -52,6 +68,34 @@ export class SnippetsController {
       res.redirect('.')
     } catch (error) {
       res.redirect('./new')
+    }
+  }
+
+  async edit (req, res) {
+    try {
+      const snippet = await Snippet.findOne({
+        _id: req.params.id
+      })
+      const viewData = {
+        id: snippet._id,
+        code: snippet.code
+      }
+      res.render('snippets/edit', { viewData })
+    } catch (error) {
+      res.redirect('.')
+    }
+  }
+
+  async update (req, res) {
+    try {
+      const snippetResult = await Snippet.updateOne({
+        _id: req.body.id
+      }, {
+        code: req.body.code
+      })
+      res.redirect('..')
+    } catch (error) {
+      res.redirect('./edit')
     }
   }
 }

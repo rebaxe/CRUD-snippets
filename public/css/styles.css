@@ -76,6 +76,8 @@ li {
 /* Snippets */
 .snippets-container {
     width: 85%;
+    max-height: 85%;
+    overflow: scroll;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -116,6 +118,7 @@ a.add-snippet {
     align-items: center;
     background-color: rgba(151, 180, 209, 0.308);
     padding: 10px 15px;
+    margin: 5px 0;
     position: relative;
 }
 
@@ -146,6 +149,7 @@ textarea {
     width: 100%;
     resize: none;
     margin: 5px 0;
+    padding: 5px;
 }
 
 textarea:focus {
@@ -163,4 +167,18 @@ textarea:focus {
 
 .submit-btn:hover {
     background-color: aliceblue;
+}
+
+/* View snippet */
+.delete-btn {
+    background-color: rgb(150, 70, 56);
+    border: 1px solid rgb(153, 70, 56);
+    margin: 8px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: ease-in-out 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: rgb(241, 211, 205);
 }
