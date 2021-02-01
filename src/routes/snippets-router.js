@@ -1,5 +1,5 @@
 /**
- * Home routes.
+ * Snippets routes.
  *
  * @author Rebecca Axelsson
  * @version 1.0.0
