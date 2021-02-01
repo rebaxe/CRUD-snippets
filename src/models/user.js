@@ -24,10 +24,9 @@ const schema = new mongoose.Schema({
   }
 })
 
+// Hash and salt password before save.
 schema.pre('save', async function () {
-  console.log('Password: ' + this.password)
   this.password = await bcrypt.hash(this.password, 8)
-  console.log('Password again: ' + this.password)
 })
 
 /**

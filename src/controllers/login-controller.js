@@ -23,6 +23,12 @@ export class LoginController {
     res.render('login/index')
   }
 
+  /**
+   * Handles a login POST request.
+   *
+   * @param {object} req Express request object.
+   * @param {object} res Express response object.
+   */
   async login (req, res) {
     try {
       console.log(req.body.username, req.body.password)

@@ -23,6 +23,12 @@ export class RegisterController {
     res.render('register/index')
   }
 
+  /**
+   * Handles register POST request.
+   *
+   * @param {object} req Express request object.
+   * @param {object} res Express response object.
+   */
   async register (req, res) {
     try {
       const user = new User({

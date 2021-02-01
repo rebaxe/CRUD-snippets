@@ -34,6 +34,12 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Renders a view with requested snippet and sends rendered HTML string as HTTP reponse.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async view (req, res) {
     try {
       const snippet = await Snippet.findOne({
@@ -51,14 +57,26 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Renders a view for creating a new snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async new (req, res) {
     const viewData = {
       code: ''
-      //createdByUser: '1'
+      // createdByUser: '1'
     }
     res.render('snippets/new', { viewData })
   }
 
+  /**
+   * Handles a create new snippet POST request.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async create (req, res) {
     try {
       const snippet = new Snippet({
@@ -71,6 +89,12 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Renders a view with a form for editing the requested snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async edit (req, res) {
     try {
       const snippet = await Snippet.findOne({
@@ -86,9 +110,15 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Updates a snippet on POST request.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async update (req, res) {
     try {
-      const snippetResult = await Snippet.updateOne({
+      await Snippet.updateOne({
         _id: req.body.id
       }, {
         code: req.body.code
@@ -99,6 +129,12 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Renders a view for removing the requested snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async remove (req, res) {
     try {
       const snippet = await Snippet.findOne({
@@ -114,6 +150,12 @@ export class SnippetsController {
     }
   }
 
+  /**
+   * Deletes the requested snippet on POST.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async delete (req, res) {
     try {
       await Snippet.deleteOne({
