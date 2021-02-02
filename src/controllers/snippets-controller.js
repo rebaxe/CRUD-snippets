@@ -98,8 +98,10 @@ export class SnippetsController {
         }
       })
       await snippet.save()
+      req.session.flash = { news: 'good-news', message: 'You created a new snippet!' }
       res.redirect('/snippets')
     } catch (error) {
+      req.session.flash = { news: 'bad-news', message: 'Failed to create a new snippet.' }
       res.redirect('./new')
     }
   }
@@ -139,8 +141,10 @@ export class SnippetsController {
       }, {
         code: req.body.code
       })
+      req.session.flash = { news: 'good-news', message: 'You updated the snippet!' }
       res.redirect('..')
     } catch (error) {
+      req.session.flash = { news: 'bad-news', message: 'Failed to edit the snippet.' }
       res.redirect('./edit')
     }
   }
@@ -177,8 +181,10 @@ export class SnippetsController {
       await Snippet.deleteOne({
         _id: req.body.id
       })
+      req.session.flash = { news: 'good-news', message: 'You deleted the snippet.' }
       res.redirect('..')
     } catch (error) {
+      req.session.flash = { news: 'bad-news', message: 'Failed to delete snippet.' }
       res.redirect('./remove')
     }
   }
