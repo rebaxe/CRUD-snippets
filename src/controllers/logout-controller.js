@@ -17,8 +17,8 @@ export class LogoutController {
    * @param {object} res - Express response object.
    */
   async logout (req, res) {
-    console.log('Logga ut')
     req.session.user = false
+    req.session.destroy()
     res.redirect('..')
   }
 }

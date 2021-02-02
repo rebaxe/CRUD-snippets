@@ -40,11 +40,11 @@ export class RegisterController {
       } else {
         await user.save()
         req.session.flash = { news: 'good-news', message: 'User successfully registered.' }
-        res.redirect('/login')
+        res.redirect('./login')
       }
     } catch (error) {
       req.session.flash = { news: 'bad-news', message: error.message }
-      res.redirect('/register')
+      res.redirect('./register')
     }
   }
 }
