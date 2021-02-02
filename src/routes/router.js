@@ -9,6 +9,7 @@ import express from 'express'
 import { router as homeRouter } from './home-router.js'
 import { router as snippetRouter } from './snippets-router.js'
 import { router as loginRouter } from './login-router.js'
+import { router as logoutRouter } from './logout-router.js'
 import { router as registerRouter } from './register-router.js'
 
 export const router = express.Router()
@@ -16,6 +17,7 @@ export const router = express.Router()
 router.use('/', homeRouter)
 router.use('/snippets', snippetRouter)
 router.use('/login', loginRouter)
+router.use('/logout', logoutRouter)
 router.use('/register', registerRouter)
 
 router.use('*', (req, res, next) => {
