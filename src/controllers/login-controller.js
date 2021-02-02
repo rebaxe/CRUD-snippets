@@ -32,12 +32,11 @@ export class LoginController {
   async login (req, res) {
     try {
       const user = await User.authenticate(req.body.username, req.body.password)
-      // req.session.regenerate(() => {
-      //   // ...
-      // })
-      req.session.user = user
+      req.session.regenerate(() => {
+        req.session.user = user
+        res.redirect('..')
+      })
       req.session.flash = { news: 'good-news', message: `Welcome, ${user.username}!` }
-      res.redirect('/snippets')
     } catch (error) {
       req.session.flash = { news: 'bad-news', message: error.message }
       res.redirect('/login')

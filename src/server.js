@@ -37,7 +37,7 @@ const main = async () => {
   })
   )
 
-  // const baseURL = process.env.BASE_URL || '/'
+  const baseURL = process.env.BASE_URL || '/'
 
   // Set up a morgan logger using the dev format for log entries.
   app.use(logger('dev'))
@@ -57,7 +57,7 @@ const main = async () => {
   // Serve static files.
   app.use(express.static(join(directoryFullName, '..', 'public')))
 
-  // Session middleware setup and use.
+  // Session middleware - setup and use.
   app.use(session({
     name: 'snippetSessionID',
     secret: 'Extremely confidential',
@@ -85,6 +85,10 @@ const main = async () => {
     if (req.session.isCreator) {
       res.locals.isCreator = req.session.isCreator
     }
+
+    // Pass the base URL to views.
+    res.locals.baseURL = baseURL
+
     next()
   })
 

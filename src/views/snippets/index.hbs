@@ -2,7 +2,7 @@
     <div class="snippets-header">
         <h1>Snippets</h1>
         {{#if userLoggedIn}}
-        <a class="add-snippet" href="/snippets/new">New snippet</a>
+        <a class="add-snippet" href="./snippets/new">New snippet</a>
         {{/if}}
     </div>
     <ul>
@@ -10,7 +10,7 @@
         {{#each viewData.snippets}}
         <li>
             <div class="code-container"><pre><code>{{this.code}}</code></pre></div>
-            <span class="edit-delete-icons"><a href="/snippets/{{this.id}}"><i class="fas fa-eye"></i></a><!-- <a href="/snippets/{{this.id}}/edit"><i class="fas fa-edit"></i></a><a href="/snippets/{{this.id}}/remove"><i class="fas fa-trash-alt"></i></a></span> -->
+            <span class="edit-delete-icons"><a href="./snippets/{{this.id}}"><i class="fas fa-eye"></i></a></span>
         </li>
         {{/each}}
         {{else}}

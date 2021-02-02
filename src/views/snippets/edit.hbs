@@ -1,7 +1,7 @@
 <div class="snippets-container">
     <h1>Edit snippet</h1>
     <div class="form-container">
-        <form class="snippet-form" method="POST" action="/snippets/{{viewData.id}}/update">
+        <form class="snippet-form" method="POST" action="./snippets/{{viewData.id}}/update">
             <input type="hidden" name="id" value="{{viewData.id}}">
             <textarea name="code" cols="30" rows="10">{{viewData.code}}</textarea>
             <input type="submit" class="submit-btn" value="Save">
