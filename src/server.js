@@ -72,14 +72,13 @@ const main = async () => {
   // Middleware to be executed before the routes.
   app.use((req, res, next) => {
     // Flash messages - survives only a round trip.
-    // if (req.session.flash) {
-    //   res.locals.flash = req.session.flash
-    //   delete req.session.flash
-    // }
+    if (req.session.flash) {
+      res.locals.flash = req.session.flash
+      delete req.session.flash
+    }
     // Logged in variable.
     if (req.session.user) {
       res.locals.userLoggedIn = req.session.user
-      console.log(req.session.user)
     }
     next()
   })
