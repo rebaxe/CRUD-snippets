@@ -80,6 +80,9 @@ const main = async () => {
     if (req.session.user) {
       res.locals.userLoggedIn = req.session.user
     }
+    if (req.session.isCreator) {
+      res.locals.isCreator = req.session.isCreator
+    }
     next()
   })
 

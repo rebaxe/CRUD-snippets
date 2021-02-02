@@ -47,9 +47,25 @@ export class SnippetsController {
       })
       const viewData = {
         id: snippet._id,
-        code: snippet.code
+        code: snippet.code,
+        creator: snippet.creator,
+        isCreator: false
       }
-      console.log(req.session.user)
+      if (snippet.creator && req.session.user._id) {
+        if (snippet.creator.id === req.session.user._id) {
+          viewData.isCreator = true
+          // req.session.isCreator = true
+          // console.log(req.session.isCreator)
+        } else {
+          console.log('Not equal')
+        }
+      } else {
+        console.log('Not existing')
+      }
+      // if (snippet.creator.id === req.session.user._id) {
+      //   res.locals.isCreator = true
+      // }
+      console.log(viewData)
       res.render('snippets/view', { viewData })
     } catch (error) {
       console.log(error)
@@ -85,7 +101,6 @@ export class SnippetsController {
           id: req.session.user._id
         }
       })
-      console.log(snippet.creator)
       await snippet.save()
       res.redirect('/snippets')
     } catch (error) {
