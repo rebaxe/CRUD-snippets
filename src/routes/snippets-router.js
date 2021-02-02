@@ -19,7 +19,7 @@ router.post('/create', controller.authorizeUser, controller.create)
 
 router.get('/:id', controller.view)
 
-router.get('/:id/edit', controller.authorizeCreator, controller.edit)
+router.get('/:id/edit', controller.authorizeUser, controller.authorizeCreator, controller.edit)
 router.post('/:id/update', controller.authorizeCreator, controller.update)
 
 router.get('/:id/remove', controller.authorizeCreator, controller.remove)

@@ -192,15 +192,22 @@ export class SnippetsController {
    */
   authorizeUser (req, res, next) {
     if (!req.session.user) {
-      const error = new Error('Forbidden')
-      error.statusCode = 403
-      res.send('403: Forbidden')
+      const error = new Error('Page not found.')
+      error.statusCode = 404
+      res.send('404: Page not found.')
       next(error)
       return
     }
     next()
   }
 
+  /**
+   * Authorize the creator of the snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   authorizeCreator (req, res, next) {
     if (!res.locals.isCreator) {
       const error = new Error('Forbidden')
