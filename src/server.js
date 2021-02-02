@@ -57,6 +57,7 @@ const main = async () => {
   // Serve static files.
   app.use(express.static(join(directoryFullName, '..', 'public')))
 
+  // Session middleware setup and use.
   app.use(session({
     name: 'snippetSessionID',
     secret: 'Extremely confidential',
@@ -80,6 +81,7 @@ const main = async () => {
     if (req.session.user) {
       res.locals.userLoggedIn = req.session.user
     }
+    // Creator variable.
     if (req.session.isCreator) {
       res.locals.isCreator = req.session.isCreator
     }
@@ -96,6 +98,7 @@ const main = async () => {
         .status(404)
         .sendFile(join(directoryFullName, 'views', 'errors', '404.html'))
     }
+    // 403 Forbidden.
     if (err.status === 403) {
       return res
         .status(403)
@@ -103,6 +106,7 @@ const main = async () => {
     }
   })
 
+  // Start server and listen on port.
   app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
     console.log('Press Ctrl+C to terminate.')

@@ -1,14 +1,13 @@
 <div class="snippets-container">
-    <h1>Snippet-viewer</h1>
-    <div class="form-container">
-        <form class="snippet-form" method="GET" action="/snippets/{{viewData.id}}/edit">
-            <input type="hidden" name="id" value="{{viewData.id}}">
-            <textarea name="code" cols="30" rows="10" readonly="readonly">{{viewData.code}}</textarea>
-            <p class="creator-name">Snippet creator: {{viewData.creator.name}}</p>
-            {{#if viewData.isCreator}}
-            <input type="submit" class="submit-btn" value="Edit">
-            <input type="submit" class="delete-btn" formaction="/snippets/{{viewData.id}}/remove" value="Delete">
-            {{/if}}
-        </form>
+    <h1>Snippet viewer</h1>
+    <div class="view-container">
+        <div class="snippet-view">
+            <pre><code>{{viewData.code}}</code></pre>
+        </div>
+        <p class="creator-name">Snippet creator: {{viewData.creator.name}}</p>
+        {{#if viewData.isCreator}}
+        <a href="/snippets/{{viewData.id}}/edit" class="submit-btn">Edit</a>
+        <a href="/snippets/{{viewData.id}}/remove" class="delete-btn">Delete</a>
+        {{/if}}
     </div>
 </div>

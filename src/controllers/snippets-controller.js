@@ -199,8 +199,7 @@ export class SnippetsController {
   authorizeUser (req, res, next) {
     if (!req.session.user) {
       const error = new Error('Page not found.')
-      error.statusCode = 404
-      res.send('404: Page not found.')
+      error.status = 404
       next(error)
       return
     }
@@ -217,8 +216,7 @@ export class SnippetsController {
   authorizeCreator (req, res, next) {
     if (!res.locals.isCreator) {
       const error = new Error('Forbidden')
-      error.statusCode = 403
-      res.send('403: Forbidden')
+      error.status = 403
       next(error)
     }
     next()
