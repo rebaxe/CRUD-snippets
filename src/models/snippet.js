@@ -13,11 +13,7 @@ const schema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: 1
-  }//,
-  // createdByUser: {
-  //   type: String,
-  //   required: true
-  // }
+  }
 })
 
 export const Snippet = mongoose.model('Snippet', schema)

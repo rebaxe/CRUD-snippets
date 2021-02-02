@@ -1,7 +1,9 @@
 <div class="snippets-container">
     <div class="snippets-header">
         <h1>Snippets</h1>
+        {{#if userLoggedIn}}
         <a class="add-snippet" href="/snippets/new">New snippet</a>
+        {{/if}}
     </div>
     <ul>
         {{#if viewData.snippets.length }}

@@ -31,13 +31,15 @@ export class LoginController {
    */
   async login (req, res) {
     try {
-      console.log(req.body.username, req.body.password)
-      await User.authenticate(req.body.username, req.body.password)
+      const user = await User.authenticate(req.body.username, req.body.password)
+      // req.session.regenerate(() => {
+      //   // ...
+      // })
+      req.session.user = user
       res.redirect('/snippets')
     } catch (error) {
       console.log(error)
-      res.status(401)
-      res.redirect('/login')
+      res.status(401).send('Incorrect username or password.')
     }
   }
 }

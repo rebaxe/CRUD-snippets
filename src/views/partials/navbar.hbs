@@ -3,6 +3,9 @@
         <li><i class="fas fa-code"></i></li>
         <li><a href="/">Home</a></li>
         <li><a href="/snippets">Snippets</a></li>
+        {{#if userLoggedIn}}<a href="/logout" id="logout-btn">Log out</a>
+        {{else}}
         <a href="/login" id="login-btn">Login</a>
+        {{/if}}
     </ul>
 </div>

@@ -13,10 +13,11 @@ export const router = express.Router()
 const controller = new SnippetsController()
 
 router.get('/', controller.index)
-router.get('/:id', controller.view)
 
-router.get('/new', controller.new)
-router.post('/create', controller.create)
+router.get('/new', controller.authorizeUser, controller.new)
+router.post('/create', controller.authorizeUser, controller.create)
+
+router.get('/:id', controller.view)
 
 router.get('/:id/edit', controller.edit)
 router.post('/:id/update', controller.update)

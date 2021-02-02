@@ -45,11 +45,11 @@ export class SnippetsController {
       const snippet = await Snippet.findOne({
         _id: req.params.id
       })
-      console.log(snippet)
       const viewData = {
         id: snippet._id,
         code: snippet.code
       }
+      console.log(req.session.user)
       res.render('snippets/view', { viewData })
     } catch (error) {
       console.log(error)
@@ -64,11 +64,10 @@ export class SnippetsController {
    * @param {object} res - Express response object.
    */
   async new (req, res) {
-    const viewData = {
-      code: ''
-      // createdByUser: '1'
-    }
-    res.render('snippets/new', { viewData })
+    // const viewData = {
+    //   code: ''
+    // }
+    res.render('snippets/new')//, { viewData })
   }
 
   /**
@@ -165,5 +164,23 @@ export class SnippetsController {
     } catch (error) {
       res.redirect('./remove')
     }
+  }
+
+  /**
+   * Authorize logged in user.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
+  authorizeUser (req, res, next) {
+    if (!req.session.user) {
+      const error = new Error('Forbidden')
+      error.statusCode = 403
+      res.send('403: Forbidden')
+      next(error)
+      return
+    }
+    next()
   }
 }
