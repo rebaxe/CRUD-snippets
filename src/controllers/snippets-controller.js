@@ -51,20 +51,19 @@ export class SnippetsController {
         creator: snippet.creator,
         isCreator: false
       }
-      if (snippet.creator && req.session.user._id) {
-        if (snippet.creator.id === req.session.user._id) {
-          viewData.isCreator = true
-          // req.session.isCreator = true
-          // console.log(req.session.isCreator)
+      req.session.isCreator = false
+      if (req.session.user !== undefined) {
+        if (snippet.creator && req.session.user._id) {
+          if (snippet.creator.id === req.session.user._id) {
+            viewData.isCreator = true
+            req.session.isCreator = true
+          } else {
+            console.log('Not equal')
+          }
         } else {
-          console.log('Not equal')
+          console.log('Not existing')
         }
-      } else {
-        console.log('Not existing')
       }
-      // if (snippet.creator.id === req.session.user._id) {
-      //   res.locals.isCreator = true
-      // }
       console.log(viewData)
       res.render('snippets/view', { viewData })
     } catch (error) {
@@ -80,10 +79,7 @@ export class SnippetsController {
    * @param {object} res - Express response object.
    */
   async new (req, res) {
-    // const viewData = {
-    //   code: ''
-    // }
-    res.render('snippets/new')//, { viewData })
+    res.render('snippets/new')
   }
 
   /**
@@ -201,6 +197,16 @@ export class SnippetsController {
       res.send('403: Forbidden')
       next(error)
       return
+    }
+    next()
+  }
+
+  authorizeCreator (req, res, next) {
+    if (!res.locals.isCreator) {
+      const error = new Error('Forbidden')
+      error.statusCode = 403
+      res.send('403: Forbidden')
+      next(error)
     }
     next()
   }

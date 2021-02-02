@@ -4,7 +4,7 @@
         <form class="snippet-form" method="GET" action="/snippets/{{viewData.id}}/edit">
             <input type="hidden" name="id" value="{{viewData.id}}">
             <textarea name="code" cols="30" rows="10" readonly="readonly">{{viewData.code}}</textarea>
-            <p>Creator: {{viewData.creator.name}}</p>
+            <p class="creator-name">Snippet creator: {{viewData.creator.name}}</p>
             {{#if viewData.isCreator}}
             <input type="submit" class="submit-btn" value="Edit">
             <input type="submit" class="delete-btn" formaction="/snippets/{{viewData.id}}/remove" value="Delete">

@@ -96,6 +96,11 @@ const main = async () => {
         .status(404)
         .sendFile(join(directoryFullName, 'views', 'errors', '404.html'))
     }
+    if (err.status === 403) {
+      return res
+        .status(403)
+        .sendFile(join(directoryFullName, 'views', 'errors', '403.html'))
+    }
   })
 
   app.listen(process.env.PORT, () => {
