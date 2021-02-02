@@ -36,10 +36,11 @@ export class LoginController {
       //   // ...
       // })
       req.session.user = user
+      req.session.flash = { news: 'good-news', message: `Welcome, ${user.username}!` }
       res.redirect('/snippets')
     } catch (error) {
-      console.log(error)
-      res.status(401).send('Incorrect username or password.')
+      req.session.flash = { news: 'bad-news', message: error.message }
+      res.redirect('/login')
     }
   }
 }

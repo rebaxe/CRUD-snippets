@@ -39,10 +39,11 @@ export class RegisterController {
         throw new Error('Username already exists.')
       } else {
         await user.save()
+        req.session.flash = { news: 'good-news', message: 'User successfully registered.' }
         res.redirect('/login')
       }
     } catch (error) {
-      console.log(error)
+      req.session.flash = { news: 'bad-news', message: error.message }
       res.redirect('/register')
     }
   }

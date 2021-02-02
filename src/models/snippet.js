@@ -13,6 +13,10 @@ const schema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: 1
+  },
+  creator: {
+    type: Object,
+    required: true
   }
 })
 

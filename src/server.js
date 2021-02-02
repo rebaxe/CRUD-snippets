@@ -64,7 +64,7 @@ const main = async () => {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      maxAge: 1000 * 30,
+      maxAge: 1000 * 60,
       sameSite: 'lax'
     }
   }))

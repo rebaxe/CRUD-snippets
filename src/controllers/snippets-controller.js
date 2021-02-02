@@ -79,10 +79,15 @@ export class SnippetsController {
   async create (req, res) {
     try {
       const snippet = new Snippet({
-        code: req.body.code
+        code: req.body.code,
+        creator: {
+          name: req.session.user.username,
+          id: req.session.user._id
+        }
       })
+      console.log(snippet.creator)
       await snippet.save()
-      res.redirect('.')
+      res.redirect('/snippets')
     } catch (error) {
       res.redirect('./new')
     }
@@ -101,7 +106,8 @@ export class SnippetsController {
       })
       const viewData = {
         id: snippet._id,
-        code: snippet.code
+        code: snippet.code,
+        creator: snippet.creator
       }
       res.render('snippets/edit', { viewData })
     } catch (error) {
