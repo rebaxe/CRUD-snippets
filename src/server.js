@@ -39,6 +39,8 @@ const main = async () => {
 
   const baseURL = process.env.BASE_URL || '/'
 
+  const sessionSecret = process.env.SESSION_SECRET
+
   // Set up a morgan logger using the dev format for log entries.
   app.use(logger('dev'))
 
@@ -62,7 +64,7 @@ const main = async () => {
   // Session middleware - setup and use.
   app.use(session({
     name: 'snippetSessionID',
-    secret: 'Extremely confidential',
+    secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
