@@ -19,6 +19,6 @@ export class LogoutController {
   async logout (req, res) {
     req.session.user = false
     req.session.destroy()
-    res.redirect('..')
+    res.redirect('./')
   }
 }

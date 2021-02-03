@@ -35,7 +35,7 @@ export class LoginController {
       req.session.regenerate(() => {
         req.session.user = user
         req.session.flash = { news: 'good-news', message: `Welcome, ${user.username}!` }
-        res.redirect('..')
+        res.redirect('./')
       })
     } catch (error) {
       req.session.flash = { news: 'bad-news', message: error.message }

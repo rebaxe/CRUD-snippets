@@ -57,17 +57,11 @@ export class SnippetsController {
           if (snippet.creator.id === req.session.user._id) {
             viewData.isCreator = true
             req.session.isCreator = true
-          } else {
-            console.log('Not equal')
           }
-        } else {
-          console.log('Not existing')
         }
       }
-      console.log(viewData)
       res.render('snippets/view', { viewData })
     } catch (error) {
-      console.log(error)
       res.redirect('.')
     }
   }
@@ -99,7 +93,7 @@ export class SnippetsController {
       })
       await snippet.save()
       req.session.flash = { news: 'good-news', message: 'You created a new snippet!' }
-      res.redirect('/snippets')
+      res.redirect('./snippets')
     } catch (error) {
       req.session.flash = { news: 'bad-news', message: 'Failed to create a new snippet.' }
       res.redirect('./new')

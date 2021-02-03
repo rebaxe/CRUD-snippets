@@ -44,7 +44,6 @@ schema.statics.authenticate = async function (username, password) {
     throw new Error('Login failed.')
   }
   // If user was found and the password matched - return user.
-  console.log('Successful login!')
   return user
 }
 
