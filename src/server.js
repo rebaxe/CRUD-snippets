@@ -57,6 +57,8 @@ const main = async () => {
   // Serve static files.
   app.use(express.static(join(directoryFullName, '..', 'public')))
 
+  app.set('trust proxy', 1)
+
   // Session middleware - setup and use.
   app.use(session({
     name: 'snippetSessionID',
