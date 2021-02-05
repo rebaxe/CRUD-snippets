@@ -339,3 +339,19 @@ a.register-btn {
     background-color: rgb(150, 70, 56);
     border: 1px solid rgb(73, 35, 28);
 }
+
+/* Footer */ 
+.footer-container {
+    background-color: rgb(157, 179, 199);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-size: 0.8rem;
+}

@@ -51,12 +51,11 @@ export class SnippetsController {
         creator: snippet.creator,
         isCreator: false
       }
-      req.session.isCreator = false
+      // Check if viewer is creator of snippet.
       if (req.session.user !== undefined) {
         if (snippet.creator && req.session.user._id) {
           if (snippet.creator.id === req.session.user._id) {
             viewData.isCreator = true
-            req.session.isCreator = true
           }
         }
       }
@@ -207,11 +206,15 @@ export class SnippetsController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  authorizeCreator (req, res, next) {
-    if (!res.locals.isCreator) {
+  async authorizeCreator (req, res, next) {
+    const snippet = await Snippet.findOne({
+      _id: req.params.id
+    })
+    if (snippet.creator.id !== req.session.user._id) {
       const error = new Error('Forbidden')
       error.status = 403
       next(error)
+      return
     }
     next()
   }

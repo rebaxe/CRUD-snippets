@@ -69,7 +69,7 @@ const main = async () => {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       maxAge: 1000 * 60 * 120,
       sameSite: 'lax'
     }
@@ -86,11 +86,6 @@ const main = async () => {
     if (req.session.user) {
       res.locals.userLoggedIn = req.session.user
     }
-    // Creator variable.
-    if (req.session.isCreator) {
-      res.locals.isCreator = req.session.isCreator
-    }
-
     // Pass the base URL to views.
     res.locals.baseURL = baseURL
 
